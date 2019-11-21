@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.*;
 import java.awt.*;
 
 @RestController
-@RequestMapping(path = "/books")
+@RequestMapping(path = "/HelloWorld")
 public class HelloWorldController {
 
-    @RequestMapping(path = "/get", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, method = RequestMethod.GET)
+    @RequestMapping(path = "/getBook", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, method = RequestMethod.GET)
     public Book getBook() {
         Book book = new Book("new Book", 90);
         return book;
     }
 
-    @RequestMapping(path = "/post", method = RequestMethod.POST,
+    @RequestMapping(path = "/createBook", method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Book createBook(@RequestBody Book book) {

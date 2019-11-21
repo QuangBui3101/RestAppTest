@@ -10,6 +10,8 @@ public class RestappApplication {
     public static void main(String[] args) {
         SpringApplication.run(RestappApplication.class, args);
         CoapServer coapServer = new CoapServer();
+        MyResource resource = new MyResource( "Bla");
+
         coapServer.add(new MyResource("Hello"));
         coapServer.start();
     }
