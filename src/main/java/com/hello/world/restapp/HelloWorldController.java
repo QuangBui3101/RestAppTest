@@ -3,8 +3,6 @@ package com.hello.world.restapp;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
-
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/HelloWorld")
@@ -12,7 +10,16 @@ public class HelloWorldController {
 
     @RequestMapping(path = "/getBook", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, method = RequestMethod.GET)
     public Book getBook() {
-        Book book = new Book("new Book", 90);
+        String title;
+        int page = 90;
+        if (RestappApplication.Data.getTitle() != null) {
+            title = RestappApplication.Data.getTitle();
+            page = RestappApplication.Data.getPage();
+        }
+        else {
+            title = "NEW BOOK";
+        }
+        Book book = new Book(title, page);
         return book;
     }
 

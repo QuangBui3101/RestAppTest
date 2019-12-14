@@ -7,8 +7,11 @@ import org.eclipse.californium.core.coap.MediaTypeRegistry;
 import org.eclipse.californium.core.server.resources.CoapExchange;
 
 public class MyResource extends CoapResource {
-    public MyResource(String name) {
+    private RestappApplication.Data data;
+
+    public MyResource(String name, RestappApplication.Data data) {
         super(name);
+        data = data;
     }
 
     @Override
@@ -24,6 +27,8 @@ public class MyResource extends CoapResource {
         System.out.println(exchange.getRequestOptions().getContentFormat());
         if (exchange.getRequestOptions().getContentFormat() == MediaTypeRegistry.APPLICATION_JSON) {
             Book book = new Gson().fromJson(exchange.getRequestText(), Book.class);
+            data.setTitle(book.getTitle());
+            data.setPage(book.getPages());
             System.out.println(book.getTitle());
         }
 

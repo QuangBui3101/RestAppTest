@@ -7,13 +7,35 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RestappApplication {
 
+    public static Data Data = new Data();
+
     public static void main(String[] args) {
         SpringApplication.run(RestappApplication.class, args);
         CoapServer coapServer = new CoapServer();
-        MyResource resource = new MyResource( "Bla");
+        MyResource resource = new MyResource( "Bla", Data);
 
-        coapServer.add(new MyResource("Hello"));
+        coapServer.add(new MyResource("Hello", Data));
         coapServer.start();
     }
 
+    public static class Data {
+        public static String getTitle() {
+            return title;
+        }
+
+        public static void setTitle(String title) {
+            RestappApplication.Data.title = title;
+        }
+
+        public static int getPage() {
+            return page;
+        }
+
+        public static void setPage(int page) {
+            RestappApplication.Data.page = page;
+        }
+
+        private static String title = "DefaultTitle";
+        private static int page = 0;
+    }
 }
