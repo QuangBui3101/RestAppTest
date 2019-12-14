@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/HelloWorld")
 public class HelloWorldController {
@@ -20,5 +21,10 @@ public class HelloWorldController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Book createBook(@RequestBody Book book) {
         return new Book(book);
+    }
+
+    @RequestMapping(path = "/", method = RequestMethod.GET)
+    public String ping() {
+        return "Hello world!";
     }
 }
