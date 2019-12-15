@@ -19,21 +19,31 @@ public class RestappApplication {
     }
 
     public static class Data {
-        public static String getTitle() {
-            return title;
+        public Book getBook() {
+            return book;
         }
 
-        public static void setTitle(String title) {
-            RestappApplication.Data.title = title;
+        public void setBook(Book book) {
+            this.book = book;
         }
 
-        public static int getPage() {
-            return page;
-        }
+        private Book book = new Book(title, page);
 
-        public static void setPage(int page) {
-            RestappApplication.Data.page = page;
-        }
+//        public static String getTitle() {
+//            return title;
+//        }
+//
+//        public static void setTitle(String title) {
+//            RestappApplication.Data.title = title;
+//        }
+//
+//        public static int getPage() {
+//            return page;
+//        }
+//
+//        public static void setPage(int page) {
+//            RestappApplication.Data.page = page;
+//        }
 
         private static String title = "DefaultTitle";
         private static int page = 0;

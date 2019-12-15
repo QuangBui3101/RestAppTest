@@ -11,7 +11,7 @@ public class MyResource extends CoapResource {
 
     public MyResource(String name, RestappApplication.Data data) {
         super(name);
-        data = data;
+        this.data = data;
     }
 
     @Override
@@ -27,9 +27,11 @@ public class MyResource extends CoapResource {
         System.out.println(exchange.getRequestOptions().getContentFormat());
         if (exchange.getRequestOptions().getContentFormat() == MediaTypeRegistry.APPLICATION_JSON) {
             Book book = new Gson().fromJson(exchange.getRequestText(), Book.class);
-            data.setTitle(book.getTitle());
-            data.setPage(book.getPages());
-            System.out.println(book.getTitle());
+            if (data.getBook() != null) {
+                data.getBook().setTitle(book.getTitle());
+                data.getBook().setPages(book.getPages());
+                System.out.println(book.getTitle());
+            }
         }
 
         System.out.println(exchange.getRequestOptions());

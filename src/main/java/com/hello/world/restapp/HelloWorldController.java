@@ -10,24 +10,25 @@ public class HelloWorldController {
 
     @RequestMapping(path = "/getBook", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, method = RequestMethod.GET)
     public Book getBook() {
-        String title;
-        int page = 90;
-        if (RestappApplication.Data.getTitle() != null) {
-            title = RestappApplication.Data.getTitle();
-            page = RestappApplication.Data.getPage();
-        }
-        else {
-            title = "NEW BOOK";
-        }
-        Book book = new Book(title, page);
-        return book;
+//        String title;
+//        int page = 90;
+//        if (RestappApplication.Data.book.getTitle() != null) {
+//            title = RestappApplication.Data.book.getTitle();
+//            page = RestappApplication.Data.book.getPages();
+//        }
+//        else {
+//            title = "NEW BOOK";
+//        }
+//        Book book = new Book(title, page);
+        return RestappApplication.Data.getBook();
     }
 
     @RequestMapping(path = "/createBook", method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Book createBook(@RequestBody Book book) {
-        return new Book(book);
+        RestappApplication.Data.setBook(book);
+        return RestappApplication.Data.getBook();
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)

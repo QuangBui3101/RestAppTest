@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Book } from 'src/Entities/Book';
 import * as xml2js from 'xml2js';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,9 @@ export class AppComponent {
 
   constructor(private httpClient: HttpClient) {
     this.title = 'angularClient';
+    Observable.interval(2000)
+      .subscribe(arg => this.OnClick());
+
 
   }
 
@@ -40,6 +44,7 @@ export class AppComponent {
           console.log(result);
           book = result;
           console.log(book.title);
+          this.title = book.pages.toString();
         });
         var builder = new xml2js.Builder({ explicitRoot: true, headless: true });
 
