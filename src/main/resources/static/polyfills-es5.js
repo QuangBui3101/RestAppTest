@@ -13216,9 +13216,10 @@ var __values = (this && this.__values) || function (o) {
             /***************************************************************************************************
              * APPLICATION IMPORTS
              */
+            window.global = window;
             /***/ 
         }),
-        /***/ 1: 
+        /***/ 2: 
         /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
           !*** multi ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js zone.js/dist/zone-legacy ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-jit-polyfills.js ./src/polyfills.ts ***!
           \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -13231,7 +13232,7 @@ var __values = (this && this.__values) || function (o) {
             module.exports = __webpack_require__(/*! E:\JavaSpring\restapp\src\main\angularClient\src\polyfills.ts */ "./src/polyfills.ts");
             /***/ 
         })
-    }, [[1, "runtime"]]]);
+    }, [[2, "runtime"]]]);
 //# sourceMappingURL=polyfills-es5-es2015.js.map
 //# sourceMappingURL=polyfills-es5.js.map
 //# sourceMappingURL=polyfills-es5.js.map
