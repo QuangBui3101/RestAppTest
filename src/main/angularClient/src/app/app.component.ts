@@ -1,3 +1,4 @@
+import { BookService } from './service/book.service';
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Book } from 'src/Entities/Book';
@@ -18,48 +19,7 @@ export class AppComponent {
 
   xmlBook: any;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private bookService: BookService) {
     this.title = 'angularClient';
-    Observable.interval(2000)
-      .subscribe(arg => this.OnClick());
-
-
-  }
-
-  OnClick() {
-    this.httpClient
-      .get<string>('http://localhost:5000/HelloWorld/getBook', { headers: this.header, responseType: 'text' as 'json' })
-      .subscribe(r => {
-        console.log(r);
-        var book: Book;
-        // var xml2js = require('xml2js');
-        var parser = new xml2js.Parser(
-          {
-            valueProcessors: [xml2js.processors.parseNumbers],
-            explicitArray: false,
-            explicitRoot: false
-          }
-        );
-        parser.parseString(r, (err, result: Book) => {
-          console.log(result);
-          book = result;
-          console.log(book.title);
-          this.title = book.pages.toString();
-        });
-        var builder = new xml2js.Builder({ explicitRoot: true, headless: true });
-
-        this.xmlBook = builder.buildObject(book);
-        console.log(this.xmlBook);
-      },
-        error => console.log(error)
-      );
-  }
-
-  OnClick1() {
-    this.httpClient
-      .post('http://localhost:5000/HelloWorld/createBook', this.xmlBook, { headers: this.header1, responseType: 'text' as 'json' })
-      .subscribe(r => {
-        console.log(r);
-      });
   }
 }
