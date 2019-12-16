@@ -3,9 +3,11 @@
     mat-input
     type="text"
     placeholder="Book title"
-    [(ngModel)]="this.title"
+    [(ngModel)]="this.titleInput"
+    onfocus="this.select()"
   />
 
   <button (click)="OnClick()">Click me!</button>
   <button (click)="OnClick1()">Post Message</button>
+  <label>{{this.title}}</label>
 </div>

@@ -10,13 +10,14 @@ import { startWith, switchMap } from 'rxjs/operators';
 })
 export class BookComponent implements OnInit {
   title: string;
+  titleInput: string = '';
 
   constructor(private bookService: BookService) { }
 
   ngOnInit() {
     interval(2000)
       .pipe(startWith(0), switchMap(() => this.bookService.getBook()))
-      .subscribe(res => this.title = res.pages.toString());
+      .subscribe(res => this.title = res.title);
   }
 
   OnClick() {
@@ -27,7 +28,7 @@ export class BookComponent implements OnInit {
   }
 
   OnClick1() {
-    this.bookService.createBook(this.title).subscribe(r => {
+    this.bookService.createBook(this.titleInput).subscribe(r => {
       console.log('Create Book');
       console.log(r);
     });
